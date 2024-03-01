@@ -1,0 +1,69 @@
+const mongoose=require('mongoose');
+
+const userSchema=mongoose.Schema({
+  name:{
+    type:String,
+    required:true
+  },
+  email:{
+    type:String,
+    required:true,
+    unique:true
+  },
+  password:{
+    type:String,
+    required:true
+  },
+  mobileno:{
+    type:String,
+    required:true
+  },
+  cart:{
+    type:[],
+    default:[]
+  },
+  shippingAddress:{
+    firstName:{
+      type:String,
+    },
+    lastName:{
+      type:String,
+    },
+    address:{
+      type:String,
+    },
+    country:{
+      type:String,
+    },
+    zipcode:{
+      type:String,
+    },
+    city:{
+      type:String
+    },
+    state:{
+      type:String,
+    }
+  },
+  payment:[
+    {
+    price:{
+      type:Number
+    },
+    nameOnCard:{
+      type:String,
+    },
+    cardNumber:{
+      type:String
+    },
+  },
+],
+myOrders:{
+  type:[],
+  default:[],
+}
+})
+
+const User=mongoose.model("User",userSchema);
+
+module.exports=User;
